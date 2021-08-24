@@ -2,13 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
-  <parent>
-      <artifactId>lutece-global-pom</artifactId>
-      <groupId>fr.paris.lutece.tools</groupId>
-      <version>5.1.1</version>
-  </parent>
-  
+ 
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.mieuxvoter.mj</groupId>
   <artifactId>majority-judgment</artifactId>
@@ -21,25 +15,25 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <serverUrl>dev.lutece.paris.fr</serverUrl>
   </properties>
- <repositories>
+ <distributionManagement>
         <repository>
-            <id>luteceSnapshot</id>
-            <name>luteceSnapshot</name>
-            <url>http://dev.lutece.paris.fr/snapshot_repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>lutece_releases_repository</id>
+            <url>http://${serverUrl}/nexus/content/repositories/lutece_releases_repository</url>
         </repository>
-        <repository>
-            <id>lutece</id>
-            <name>luteceRepository</name>
-            <url>http://dev.lutece.paris.fr/maven_repository</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>lutece_snapshots_repository</id>
+            <url>http://${serverUrl}/nexus/content/repositories/lutece_snapshots_repository</url>
+        </snapshotRepository>
+
+        <site>
+            <id>lutece_ftp_site_maven</id>
+            <url>ftp://site-deploy.${serverUrl}/site/plugins</url>
+        </site>
+    </distributionManagement>
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
